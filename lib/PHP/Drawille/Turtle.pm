@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use parent 'PHP::Drawille::Canvas';
-__PACKAGE__->mk_accessors(qw/ x y rotation up /);
+__PACKAGE__->mk_accessors(qw/ x y rotation _up /);
 
 use List::Util qw/ max min /;
 use Math::Round;
@@ -58,7 +58,7 @@ sub getRotation {
 #
 sub down {
     my $this = shift;
-    $this->up(0);
+    $this->_up(0);
 }
 
 #
@@ -66,7 +66,7 @@ sub down {
 #
 sub up {
     my $this = shift;
-    $this->up(1);
+    $this->_up(1);
 }
 
 #
@@ -120,7 +120,7 @@ sub left {
 #
 sub move {
     my ( $this, $x, $y ) = @_;
-    if ( !$this->up ) {
+    if ( !$this->_up ) {
         my $x1    = round( $this->x );
         my $y1    = round( $this->y );
         my $x2    = $x;

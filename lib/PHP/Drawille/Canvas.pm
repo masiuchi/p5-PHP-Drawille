@@ -8,6 +8,7 @@ __PACKAGE__->mk_accessors(qw/ chars /);    # Canvas representation
 use List::Util qw/ max min /;
 use HTML::Entities;
 use Math::Round;
+use POSIX qw/ floor /;
 
 #
 # Dots:
@@ -44,7 +45,7 @@ sub new {
 #
 sub clear {
     my $this = shift;
-    $this->chars = +{};
+    $this->chars( +{} );
 }
 
 #
@@ -220,7 +221,7 @@ sub getDotFromMap {
     my ( $this, $x, $y ) = @_;
     $y = $y % 4;
     $x = $x % 2;
-    return $pixel_map->{ $y < 0 ? 4 + $y : $y }{ $x < 0 ? 2 + $x : $x };
+    return $pixel_map->[ $y < 0 ? 4 + $y : $y ][ $x < 0 ? 2 + $x : $x ];
 }
 
 #

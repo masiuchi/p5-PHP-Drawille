@@ -3,8 +3,6 @@
 requires 'perl', '5.008001';
 
 requires 'parent';
-requires 'List::Util';
-requires 'Math::Trig';
 
 requires 'Class::Accessor::Fast';
 requires 'HTML::Entities';

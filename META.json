@@ -44,9 +44,7 @@
          "requires" : {
             "Class::Accessor::Fast" : "0",
             "HTML::Entities" : "0",
-            "List::Util" : "0",
             "Math::Round" : "0",
-            "Math::Trig" : "0",
             "parent" : "0",
             "perl" : "5.008001"
          }
