@@ -18,7 +18,16 @@ PHP::Drawille - Terminal drawing with braille
 
 =head1 SYNOPSIS
 
-    use PHP::Drawille;
+    use PHP::Drawille::Canvas;
+    
+    my $canvas = PHP::Drawille::Canvas->new;
+    
+    for ( my $x = 0; $x <= 1800; $x += 10 ) {
+        $canvas->set( $x / 10, 10 + sin( $x * 3.14 / 180 ) * 10 );
+    }
+    
+    print $canvas->frame . "\n";
+
 
 =head1 DESCRIPTION
 
