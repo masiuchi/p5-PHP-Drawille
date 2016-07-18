@@ -3,6 +3,7 @@
 requires 'perl', '5.008001';
 
 requires 'parent';
+requires 'Encode';
 
 requires 'Class::Accessor::Fast';
 requires 'HTML::Entities';

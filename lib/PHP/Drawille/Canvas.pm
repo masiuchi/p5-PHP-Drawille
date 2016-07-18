@@ -1,10 +1,12 @@
 package PHP::Drawille::Canvas;
 use strict;
 use warnings;
+use utf8;
 
 use parent 'Class::Accessor::Fast';
 __PACKAGE__->mk_accessors(qw/ chars /);    # Canvas representation
 
+use Encode qw/ encode_utf8 /;
 use List::Util qw/ max min /;
 use HTML::Entities;
 use Math::Round;
@@ -184,7 +186,7 @@ sub rows {
 sub frame {
     my ( $this, $options ) = @_;
     $options ||= +{};
-    return join( "\n", @{ $this->rows($options) } );
+    return encode_utf8( join( "\n", @{ $this->rows($options) } ) );
 }
 
 #

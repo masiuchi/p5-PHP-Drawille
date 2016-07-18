@@ -43,6 +43,7 @@
       "runtime" : {
          "requires" : {
             "Class::Accessor::Fast" : "0",
+            "Encode" : "0",
             "HTML::Entities" : "0",
             "Math::Round" : "0",
             "parent" : "0",

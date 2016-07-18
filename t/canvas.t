@@ -4,6 +4,8 @@ use utf8;
 
 use Test::More;
 
+use Encode qw/ encode_utf8 /;
+
 use PHP::Drawille::Canvas;
 
 subtest 'set' => sub {
@@ -38,7 +40,7 @@ subtest 'frame' => sub {
     my $canvas = PHP::Drawille::Canvas->new;
     is( $canvas->frame, '' );
     $canvas->set( 0, 0 );
-    is( $canvas->frame, '⠁' );
+    is( $canvas->frame, encode_utf8('⠁') );
 };
 
 subtest 'get' => sub {

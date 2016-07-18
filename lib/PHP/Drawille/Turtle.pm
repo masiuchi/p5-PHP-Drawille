@@ -1,6 +1,7 @@
 package PHP::Drawille::Turtle;
 use strict;
 use warnings;
+use utf8;
 
 use parent 'PHP::Drawille::Canvas';
 __PACKAGE__->mk_accessors(qw/ x y rotation _up /);
