@@ -1,6 +1,6 @@
 # NAME
 
-PHP::Drawille - It's new $module
+PHP::Drawille - Terminal drawing with braille
 
 # SYNOPSIS
 
@@ -8,8 +8,12 @@ PHP::Drawille - It's new $module
 
 # DESCRIPTION
 
-PHP::Drawille is ...
+PHP::Drawille is a port of php-drawille.
+
+# SEE ALSO
+
+php-drawille ([https://github.com/whatthejeff/php-drawille](https://github.com/whatthejeff/php-drawille))
 
 # AUTHOR
 
-Masahiro Iuchi &lt;masahiro.iuchi@gmail.com>
+Masahiro Iuchi <masahiro.iuchi@gmail.com>

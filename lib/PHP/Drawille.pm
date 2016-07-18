@@ -14,7 +14,7 @@ __END__
 
 =head1 NAME
 
-PHP::Drawille - It's new $module
+PHP::Drawille - Terminal drawing with braille
 
 =head1 SYNOPSIS
 
@@ -22,7 +22,11 @@ PHP::Drawille - It's new $module
 
 =head1 DESCRIPTION
 
-PHP::Drawille is ...
+PHP::Drawille is a port of php-drawille.
+
+=head1 SEE ALSO
+
+php-drawille (L<https://github.com/whatthejeff/php-drawille>)
 
 =head1 AUTHOR
 

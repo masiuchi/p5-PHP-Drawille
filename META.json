@@ -1,10 +1,10 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Terminal drawing with braille",
    "author" : [
       "Masahiro Iuchi <masahiro.iuchi@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150001",
+   "generated_by" : "Minilla/v3.0.2, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "unknown"
    ],
@@ -56,6 +56,18 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/masiuchi/p5-PHP-Drawille/issues"
+      },
+      "homepage" : "https://github.com/masiuchi/p5-PHP-Drawille",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/masiuchi/p5-PHP-Drawille.git",
+         "web" : "https://github.com/masiuchi/p5-PHP-Drawille"
+      }
+   },
    "version" : "0.01",
-   "x_authority" : "cpan:MASIUCHI"
+   "x_authority" : "cpan:MASIUCHI",
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
