@@ -37,25 +37,16 @@ our $braille_char_offset = 0x2800;
 
 sub new {
     my $class = shift;
-    my $this  = $class->SUPER::new(@_);
+    my $this  = $class->SUPER::new();
     $this->chars( +{} );
     return $this;
 }
 
-#
-# Clears the canvas
-#
 sub clear {
     my $this = shift;
     $this->chars( +{} );
 }
 
-#
-# Sets a pixel at the given position
-#
-# @param integer $x x position
-# @param integer $y y position
-#
 sub set {
     my ( $this, $x, $y ) = @_;
     my ( $px, $py );
@@ -63,12 +54,6 @@ sub set {
     $this->chars->{$py}{$px} |= $this->getDotFromMap( $x, $y );
 }
 
-#
-# Unsets a pixel at the given position
-#
-# @param integer $x x position
-# @param integer $y y position
-#
 sub reset {
     my ( $this, $x, $y ) = @_;
     my ( $px, $py );
@@ -76,14 +61,6 @@ sub reset {
     $this->chars->{$py}{$px} &= ~$this->getDotFromMap( $x, $y );
 }
 
-#
-# Gets the pixel state at a given position
-#
-# @param integer $x x position
-# @param integer $y y position
-#
-# @return bool the pixel state
-#
 sub get {
     my ( $this, $x, $y ) = @_;
     my ( $char, $dummy );
@@ -91,25 +68,11 @@ sub get {
     return $char & $this->getDotFromMap( $x, $y );
 }
 
-#
-# Toggles the pixel state on/off at a given position
-#
-# @param integer $x x position
-# @param integer $y y position
-#
 sub toggle {
     my ( $this, $x, $y ) = @_;
     $this->get( $x, $y ) ? $this->reset( $x, $y ) : $this->set( $x, $y );
 }
 
-#
-# Gets a line
-#
-# @param integer $y     y position
-# @param array $options options
-#
-# @return string line
-#
 sub row {
     my ( $this, $y, $options ) = @_;
     $options ||= +{};
@@ -135,13 +98,6 @@ sub row {
     return $carry;
 }
 
-#
-# Gets all lines
-#
-# @param array $options options
-#
-# @return array line
-#
 sub rows {
     my ( $this, $options ) = @_;
     $options ||= +{};
@@ -176,49 +132,22 @@ sub rows {
     return [ map { $this->row( $_, $options ) } ( $min .. $max ) ];
 }
 
-#
-# Gets a string representation of the canvas
-#
-# @param array $options options
-#
-# @return string representation
-#
 sub frame {
     my ( $this, $options ) = @_;
     $options ||= +{};
     return encode_utf8( join( "\n", @{ $this->rows($options) } ) );
 }
 
-#
-# Gets the canvas representation.
-#
-# @return array characters
-#
 sub getChars {
     my ($this) = @_;
     return $this->chars;
 }
 
-#
-# Gets a braille unicode character
-#
-# @param integer $code character code
-#
-# @return string braille
-#
 sub toBraille {
     my ( $this, $code ) = @_;
     return decode_entities( '&#' . ( $braille_char_offset + $code ) . ';' );
 }
 
-#
-# Gets a dot from the pixel map.
-#
-# @param integer $x x position
-# @param integer $y y position
-#
-# @return integer dot
-#
 sub getDotFromMap {
     my ( $this, $x, $y ) = @_;
     $y = $y % 4;
@@ -226,14 +155,6 @@ sub getDotFromMap {
     return $pixel_map->[ $y < 0 ? 4 + $y : $y ][ $x < 0 ? 2 + $x : $x ];
 }
 
-#
-# Autovivification for a canvas position.
-#
-# @param integer $x x position
-# @param integer $y y position
-#
-# @return array
-#
 sub prime {
     my ( $this, $x, $y ) = @_;
     $x = round($x);
@@ -247,4 +168,83 @@ sub prime {
 }
 
 1;
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+PHP::Drawille::Canvas - Pixel surface
+
+=head1 SYNOPSIS
+
+    use PHP::Drawille::Canvas;
+    
+    my $canvas = PHP::Drawille::Canvas->new;
+    
+    for ( my $x = 0; $x <= 1800; $x += 10 ) {
+        $canvas->set( $x / 10, 10 + sin( $x * 3.14 / 180 ) * 10 );
+    }
+    
+    print $canvas->frame . "\n";
+
+=head1 METHODS
+
+=head2 PHP::Drawille::Canvas->new()
+
+Creates new canvas instance.
+
+=head2 $canvas->clear()
+
+Clears the canvas.
+
+=head2 $canvas->set($x, $y)
+
+Sets a pixel at the given position.
+
+=head2 $canvas->reset($x, $y)
+
+Unsets a pixel at the given position.
+
+=head2 $canvas->get($x, $y)
+
+Gets the pixel state at a given position.
+
+=head2 $canvas->toggle($x, $y)
+
+Toggles the pixel state on/off at a given position.
+
+=head2 $canvas->row($y, $options)
+
+Gets a line.
+
+=head2 $canvas->rows($options)
+
+Gets all lines.
+
+=head2 $canvas->frame($options)
+
+Gets a string representation of the canvas.
+
+=head2 $canvas->getChars()
+
+Gets the canvas representation.
+
+=head2 $canvas->toBraille($code)
+
+Gets a braille unicode character.
+
+=head2 $canvas->getDotFromMap($x, $y)
+
+Gets a dot from the pixel map.
+
+=head2 $canvas->prime($x, $y)
+
+Autovivification for a canvas position.
+
+=head1 SEE ALSO
+
+L<PHP::Drawille>
+
+=cut
 

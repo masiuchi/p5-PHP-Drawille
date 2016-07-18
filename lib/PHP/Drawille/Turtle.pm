@@ -24,57 +24,31 @@ sub new {
     return $this;
 }
 
-#
-# Gets the current x position.
-#
-# @return integer x position
-#
 sub getX {
     my $this = shift;
     return $this->x;
 }
 
-#
-# Gets the current y position.
-#
-# @return integer y position
-#
 sub getY {
     my $this = shift;
     return $this->y;
 }
 
-#
-# Gets the current canvas rotation
-#
-# @return integer current canvas rotation
-#
 sub getRotation {
     my $this = shift;
     return $this->rotation;
 }
 
-#
-# Push the pen down
-#
 sub down {
     my $this = shift;
     $this->_up(0);
 }
 
-#
-# Pull the pen up
-#
 sub up {
     my $this = shift;
     $this->_up(1);
 }
 
-#
-# Move the pen forward
-#
-# @param integer $length distance to move forward
-#
 sub forward {
     my ( $this, $length ) = @_;
     my $theta = $this->rotation / 180.0 * pi;
@@ -83,42 +57,21 @@ sub forward {
     $this->move( $x, $y );
 }
 
-#
-# Move the pen backwards
-#
-# @param integer $length distance to move backwards
-#
 sub back {
     my ( $this, $length ) = @_;
     $this->forward( -$length );
 }
 
-#
-# Angle the canvas to the right.
-#
-# @param integer $angle degree to angle
-#
 sub right {
     my ( $this, $angle ) = @_;
     $this->rotation( $this->rotation + $angle );
 }
 
-#
-# Angle the canvas to the left.
-#
-# @param integer $angle degree to angle
-#
 sub left {
     my ( $this, $angle ) = @_;
     $this->rotation( $this->rotation - $angle );
 }
 
-#
-# Move the pen, drawing if the pen is down.
-#
-# @param int $y new x position
-# @param int $y new y position
-#
 sub move {
     my ( $this, $x, $y ) = @_;
     if ( !$this->_up ) {
@@ -148,72 +101,129 @@ sub move {
     $this->y($y);
 }
 
-#
-# Pull the pen up
-#
 sub pu {
     my $this = shift;
     $this->up();
 }
 
-#
-# Push the pen up
-#
 sub pd {
     my $this = shift;
     $this->down();
 }
 
-#
-# Move the pen forward
-#
-# @param integer $length distance to move forward
-#
 sub fd {
     my ( $this, $length ) = @_;
     $this->forward($length);
 }
 
-#
-# Move the pen, drawing if the pen is down.
-#
-# @param int $y new x position
-# @param int $y new y position
-#
 sub mv {
     my ( $this, $x, $y ) = @_;
     $this->move( $x, $y );
 }
 
-#
-# Angle the canvas to the right.
-#
-# @param integer $angle degree to angle
-#
 sub rt {
     my ( $this, $angle ) = @_;
     $this->right($angle);
 }
 
-#
-# Angle the canvas to the left.
-#
-# @param integer $angle degree to angle
-#
 sub lt {
     my ( $this, $angle ) = @_;
     $this->left($angle);
 }
 
-#
-# Move the pen backwards
-#
-# @param integer $length distance to move backwards
-#
 sub bk {
     my ( $this, $length ) = @_;
     $this->back($length);
 }
 
 1;
+__END__
 
+=encoding utf-8
+
+=head1 NAME
+
+PHP::Drawille::Turtle - Basic turtle graphics interface
+
+=head1 SYNOPSIS
+
+    use PHP::Drawille::Turtle;
+    
+    my $turtle = PHP::Drawille::Turtle->new;
+    
+    for ( my $x = 0; $x < 36; $x++ ) {
+        $turtle->right(10);
+    
+        for ( my $y = 0; $y < 36; $y++ ) {
+            $turtle->right(10);
+            $turtle->forward(8);
+        }
+    }
+    
+    print $turtle->frame . "\n";
+
+=head1 METHODS
+
+=head2 PHP::Drawille::Turtle->new([$x [, $y]])
+
+Creates new turtle intance.
+
+=head2 $turtle->getX()
+
+Gets the current x position.
+
+=head2 $turtle->getY()
+
+Gets the current y position.
+
+=head2 $turtle->getRotation()
+
+Gets the current canvas rotation.
+
+=head2 $turtle->down()
+
+=head2 $turtle->pd()
+
+Push the pen down.
+
+=head2 $turtle->up()
+
+=head2 $turtle->pu()
+
+Pull the pen up.
+
+=head2 $turtle->forward($length)
+
+=head2 $turtle->fd($length)
+
+Move the pen forward.
+
+=head2 $turtle->back($length)
+
+=head2 $turtle->bk($length)
+
+Move the pen backwards.
+
+=head2 $turtle->right($angle)
+
+=head2 $turtle->rt($angle)
+
+Angle the canvas to the right.
+
+=head2 $turtle->left($angle)
+
+=head2 $turtle->lt($angle)
+
+Angle the canvas to the left.
+
+=head2 $turtle->move($x, $y)
+
+=head2 $turtle->mv($x, $y)
+
+Move the pen forward.
+
+=head1 SEE ALSO
+
+L<PHP::Drawille>
+
+=cut
