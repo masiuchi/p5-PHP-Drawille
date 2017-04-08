@@ -20,7 +20,8 @@ PHP::Drawille is a port of php-drawille.
 
 # SEE ALSO
 
-php-drawille ([https://github.com/whatthejeff/php-drawille](https://github.com/whatthejeff/php-drawille))
+* php-drawille (https://github.com/whatthejeff/php-drawille)
+* drawille (https://github.com/asciimoo/drawille)
 
 # AUTHOR
 
