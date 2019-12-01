@@ -12,5 +12,5 @@ jobs:
     - name: Build and test
       uses: docker://perl:5.26
       with:
-        args: cpanm --quiet --installdeps --notest . && perl Build.PL && ./Build && ./Build test
+        args: "cpanm --quiet --installdeps --notest . && perl Build.PL && ./Build && ./Build test"
 
