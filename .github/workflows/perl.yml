@@ -1,0 +1,16 @@
+name: Perl
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and test
+      uses: docker://perl:5.26
+      with:
+        args: prove
+
